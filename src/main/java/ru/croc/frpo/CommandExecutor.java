@@ -62,7 +62,8 @@ public class CommandExecutor {
         } else if(command.length > 2) {
             System.out.println("Error: too many arguments");
         } else {
-            Path newDirectory = Paths.get(command[1]);
+            Path newDirectory = null;
+            newDirectory = Paths.get(command[1]);
             if (newDirectory.isAbsolute()) {
                 if (Files.isDirectory(newDirectory)) {
                     currentDirectory = newDirectory;

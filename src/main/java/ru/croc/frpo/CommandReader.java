@@ -92,6 +92,9 @@ public class CommandReader {
             {
                 String command;
                 while ((command=br.readLine()) != null) {
+                    if (command.equals("exit")) {
+                        break;
+                    }
                     System.out.println("Command " + command + ":");
                     parseCommand(command);
                     System.out.println("===========================================================================");

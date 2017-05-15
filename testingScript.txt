@@ -1,0 +1,18 @@
+help
+ls
+md dir1
+md dir2
+cd dir1
+md subdir1
+cd subdir1
+mf sd1File.txt
+cd ..
+mf d1File.txt
+cd ../dir2
+mf newFile.txt
+af newFile.txt
+cat newFile.txt 1
+cd ../dir1/subdir1
+af sd1File.txt
+cat sd1File.txt 5
+exit
