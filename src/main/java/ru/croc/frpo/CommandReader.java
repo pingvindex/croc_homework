@@ -35,6 +35,7 @@ public class CommandReader {
             System.out.print(executor.getCurrentDirectoryPath() + "-> ");
             currentCommand = readCommand();
             if (currentCommand.equals("exit")) {
+                saveHistory();
                 break;
             }
 
@@ -43,6 +44,26 @@ public class CommandReader {
             System.out.println("===========================================================================");
         }
 
+    }
+
+    private void saveHistory() {
+        Path logFile = null;
+        try {
+            System.out.print("Input history filename: ");
+            String logFileName = readCommand();
+            logFile = Files.createFile(startFolder.resolve(logFileName));
+        } catch (IOException e) {
+            System.out.println("Error: can't create history log file");
+        }
+        try (BufferedWriter bw = Files.newBufferedWriter(logFile)) {
+            for (String cmd:
+                 history) {
+                bw.write(cmd + "\n");
+                bw.flush();
+            }
+        } catch (IOException e) {
+            System.out.println("Error" + e.getMessage());
+        }
     }
 
     public static String readCommand() {
